@@ -52,9 +52,7 @@ class birthdaysmanager:
             for line in lines:
                 if(i != index):
                     f.write(line)
-                    print("Y")
                 print(i)
-                i = i +1
 
     def get_next(self):
         next_birthdays = self.birthdays[self.birthdays["Dev_Daysleft"] <= 30].sort_values(["Dev_Daysleft"])
