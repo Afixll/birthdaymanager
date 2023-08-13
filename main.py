@@ -1,8 +1,10 @@
 import argparse
 import sys
 from pyfiles.birthdaysmanager import birthdaysmanager
+import os
 
-path = "birthdays.txt"
+file_path = os.path.realpath(__file__).rstrip("/main.py")
+path = f"{file_path}/birthdays.txt"
 
 parser = argparse.ArgumentParser(
                     prog="birthdaymanager",
