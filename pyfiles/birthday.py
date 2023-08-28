@@ -37,7 +37,7 @@ class birthday:
             case True: # A whole case for people born on a leap-day
                 match size_relation(c_date.month, 2):
                     case -1:
-                        if(c_date.year % 4 != 0):
+                        if(not is_leapyear(c_date.year)):
                             rel_date = dt.date(c_date.year, 2, 28)
                             self.days_left = calc_daysleft(c_date, rel_date)
                             self.days_left_alternative = self.days_left + 1
@@ -47,7 +47,7 @@ class birthday:
                             self.days_left = calc_daysleft(c_date, rel_date)
                             return
                     case 1:
-                        if((c_date.year + 1) % 4 != 0):
+                        if(not is_leapyear(c_date.year + 1)):
                             rel_date = dt.date(c_date.year + 1, 2, 28)
                             self.days_left = calc_daysleft(c_date, rel_date)
                             self.days_left_alternative = self.days_left + 1
@@ -59,7 +59,7 @@ class birthday:
                     case 0:
                         match size_relation(c_date.day, day):
                             case -1:
-                                if(c_date.year % 4 != 0):
+                                if(not is_leapyear(c_date.year)):
                                     self.days_left = 28 - c_date.days
                                     self.days_left_alternative = self.days_left + 1
                                     return
@@ -67,7 +67,7 @@ class birthday:
                                     self.days_left = 29 - c_date.days
                                     return
                             case 1:
-                                if((c_date.year + 1) % 4 != 0):
+                                if(not is_leapyear(c_date.year + 1)):
                                     rel_date = dt.date(c_date.year + 1, 2, 28)
                                     self.days_left = calc_daysleft(c_date, rel_date)
                                     self.days_left_alternative = self.days_left + 1
@@ -91,3 +91,9 @@ def size_relation(n1, n2):
 
 def calc_daysleft(c_date, rel_date):
     return (rel_date - c_date).days
+
+def is_leapyear(year):
+    req_1 = year % 4 == 0
+    req_2 = year % 100 != 0 or year % 400 == 0
+
+    return req_1 and req_2

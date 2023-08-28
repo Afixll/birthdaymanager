@@ -34,7 +34,7 @@ class birthdaysmanager:
 
     def __str__(self) -> str:
         if(self.birthdays.empty):
-            return "No birthdays have been added yet"
+            return "No birthdays in database"
         else:
             return self.birthdays.to_string(columns=["Name", "Date", "Days left"], col_space=[10,10,10], justify="center")
 
@@ -52,7 +52,7 @@ class birthdaysmanager:
             for line in lines:
                 if(i != index):
                     f.write(line)
-                print(i)
+
 
     def get_next(self):
         next_birthdays = self.birthdays[self.birthdays["Dev_Daysleft"] <= 30].sort_values(["Dev_Daysleft"])
@@ -60,4 +60,3 @@ class birthdaysmanager:
             return "No birthdays within the next 30 days"
         else:
             return next_birthdays.to_string(columns=["Name", "Date", "Days left"], col_space=[10,10,10], justify="center")
-
